@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.contrib import messages
 
 def home(request):
     return render(request, 'store/home.html')
@@ -8,3 +10,17 @@ def products(request):
 
 def contact(request):
     return render(request, 'store/contact.html')
+
+def handlecontact(request):
+    if request.method == 'POST':
+        qname = request.POST.get('qname')
+        qemail = request.POST.get('qemail')
+        qmessage = request.POST.get('qmessage')
+        qstatus = request.POST.get('qstatus')
+
+        print(qname, qemail, qmessage, qstatus)
+        messages.success(request, 'Your message sent successfully! Our team will get back to you soon.')
+        return redirect('home')
+
+    else:
+        return HttpResponse('Error: 404 Not Found')
