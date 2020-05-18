@@ -1,0 +1,10 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Welcome to this website!!</h1>
+        <p>You are logged in as {{ request.user }}</p>
+    {% else %}
+        <h1>Welcome to this website!!</h1>
+    {% endif %}
+{% endblock %}
