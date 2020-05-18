@@ -10,16 +10,11 @@ def signup(request):
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
-        fname = request.POST.get('fname')
-        lname = request.POST.get('lname')
 
         if password1 != password2:
             messages.warning(request, 'Invalid Credentials. Please try again.')
         else:
-            myuser = User.objects.create_user(username, email, password1)
-            myuser.first_name = fname
-            myuser.last_name = lname
-            myuser.save()
+            User.objects.create_user(username, email, password1)
             messages.success(request, 'Account Successfully created! Now you can login.')
         return redirect('home')
         
@@ -39,7 +34,7 @@ def handlelogin(request):
         else:
             messages.warning(request, 'Invalid Credentials. Please try again.')
             
-        return redirect('home')
+        return redirect('products')
     else:
         return HttpResponse('Error: 404 Not Found')
 

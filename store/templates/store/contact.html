@@ -18,7 +18,7 @@
         <form action="/contact/post" method="POST">
             <div class="form-group">
               <label for="qname">Name</label>
-              <input type="text" class="form-control" id="qname" name="qname" placeholder="Name">
+              <input type="text" class="form-control" id="qname" name="qname" placeholder="Name" required>
             </div>
             <div class="form-group">
               <label for="qemail">Email</label>
@@ -28,11 +28,9 @@
               <label for="qmessage">Message</label>
               <textarea class="form-control" id="qmessage" name="qmessage" rows="3" required></textarea>
             </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="qstatus" name="qstatus">
-                <label class="form-check-label" for="defaultCheck1">
-                  Are you a customer of this website ?
-                </label>
+            <div class="custom-control custom-switch mb-3">
+              <input type="checkbox" class="custom-control-input" id="qstatus" name="qstatus">
+              <label class="custom-control-label" for="qstatus">Do have an account on this website ?</label>
             </div>
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">Submit</button>
