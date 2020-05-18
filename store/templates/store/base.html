@@ -13,30 +13,31 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- local css -->
-    <link rel="stylesheet" href="{% static 'store/style.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/home.css' %}">
 
     <title>BookStore</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'home' %}">BookStore</a>
+    <nav class="navbar navbar-expand-lg navDesign">
+        <a class="navbar-brand cblack" href="{% url 'home' %}">Pingoo BookStore</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse cblack" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item active ">
+              <a class="nav-link cblack" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'products' %}">Products</a>
+              <a class="nav-link cblack" href="{% url 'products' %}">Products</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+              <a class="nav-link cblack" href="{% url 'contact' %}">Contact</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="/admin">Admin</a>
+              <a class="nav-link cblack" href="/admin">Admin</a>
             </li>
           </ul>
           {% if user.is_authenticated %}
@@ -60,16 +61,24 @@
             </div>
             <div class="modal-body">
                 <form action="/client/login" method="POST">
-                  <div class="form-group">
-                    <label for="loginusername">Username</label>
-                    <input type="text" class="form-control" id="loginusername" name="loginusername" aria-describedby="emailHelp" placeholder="Username" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="loginpassword">Password</label>
-                    <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password" required>
-                  </div>
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-primary">Login</button>
+                    <div class="form-group row">
+                      <label for="loginusername" class="col-sm-2 col-form-label">Username</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="loginpassword" class="col-sm-2 col-form-label">Password</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Login</button>
+                      </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -81,32 +90,37 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h3 class="modal-title" id="signupModalTitle">Sign Up</h3>
+            <h3 class="modal-title" id="signupModalTitle">SignUp</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
                 <form action="/client/signup" method="POST">
-                  <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="Username" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" required>
-                    <small id="usernameHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
-                  </div>
-                  <div class="form-group">
-                    <label for="password1">Password</label>
-                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="password2">Confirm Password</label>
-                    <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required>
-                  </div>
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <div class="form-group row">
+                      <label for="username" class="col-sm-2 col-form-label">Username</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="email" class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="password" class="col-sm-2 col-form-label">Password</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">SignUp</button>
+                      </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -127,6 +141,21 @@
 
         {% block content %}{% endblock %}
     </div>
+
+    <!-- <div id="footer-color"></div>
+    <footer class="site-footer">
+      <div>
+        <p class="copyright-text">
+          Copyright &copy;
+          <script>
+            const year = new Date().getFullYear();
+            document.write(year);
+          </script>
+          <a id="footer-logo"><strong>Pingoo API</strong></a
+          >. All Rights Reserved.
+        </p>
+      </div>
+    </footer> -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

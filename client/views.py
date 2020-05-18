@@ -8,16 +8,11 @@ def signup(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
-        password1 = request.POST.get('password1')
-        password2 = request.POST.get('password2')
+        password = request.POST.get('password')
 
-        if password1 != password2:
-            messages.warning(request, 'Invalid Credentials. Please try again.')
-        else:
-            User.objects.create_user(username, email, password1)
-            messages.success(request, 'Account Successfully created! Now you can login.')
+        User.objects.create_user(username, email, password)
+        messages.success(request, 'Account Successfully created! Now you can login.')
         return redirect('home')
-        
     else:
         return HttpResponse('Error: 404 Not Found')
 
@@ -32,9 +27,9 @@ def handlelogin(request):
             login(request, user)
             messages.success(request, 'Welcome! You are successfully logged in.')
         else:
-            messages.warning(request, 'Invalid Credentials. Please try again.')
+            messages.warning(request, 'Invalid Credentials. Try again')
             
-        return redirect('products')
+        return redirect('home')
     else:
         return HttpResponse('Error: 404 Not Found')
 

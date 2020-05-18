@@ -1,5 +1,65 @@
-{% extends 'store/base.html' %}
+{% extends 'store/base.html' %} {% load static %} {% block content %}
+<div class="search-bar" style="text-align: center; justify-content: center;">
+    <span>
+      <input
+        type="text"
+        class="searchBar"
+        placeholder="Search here"
+        style="width: 50vh; height: 7vh;"
+      />
+      <button>
+        <img
+          src="{% static 'store/img/svg/search.svg' %}"
+          height="39px"
+          width="34px"
+        />
+      </button>
+    </span>
+</div>
 
-{% block content %}
-    <h2>Products Page</h2>
+<div class="row" style="text-align: center; justify-content: center;">
+  {% for i in Book %}
+  <div
+    class="card"
+    style="width: 250px; padding: 10px; margin-left: 10px; margin-top: 20px;"
+  >
+    <img
+      class="card-img-top"
+      src="/media/{{i.book_pic}}"
+      height="270"
+      width="100"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <div style="min-height: 60px;">
+        <a class="card-title" style="font-weight: 600; font-size: 15px;"
+          >{{i.book_name}}</a
+        >
+      </div>
+      <div>
+        <a
+          class="card-title"
+          style="font-weight: 600; padding: 20px; color: rgb(241, 50, 162);"
+          >₹{{i.book_price }}</a
+        >
+      </div>
+      <div style="min-height: 60px; padding: 10px;">
+        <a class="card-title" style="font-weight: 600; font-size: 15px;"
+          >{{i.book_author }}</a
+        >
+      </div>
+      <div style="min-height: 60px; padding: 10px;">
+        <a class="card-title">{{i.book_desc}}</a>
+      </div>
+      <!-- <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_status}}</a></div>
+                    <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_date}}</a></div>
+                    <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_class}}</a></div>
+                    <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_category }}</a></div> -->
+      <div style="min-height: 30px; padding: 10px;">
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}
