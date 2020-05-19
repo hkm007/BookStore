@@ -19,32 +19,32 @@
     <title>BookStore</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navDesign">
-        <a class="navbar-brand cblack" href="{% url 'home' %}">Pingoo BookStore</a>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: #ff471a;">
+        <a class="navbar-brand" href="{% url 'home' %}">BookStore</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
-        <div class="collapse navbar-collapse cblack" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active ">
-              <a class="nav-link cblack" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link cblack" href="{% url 'products' %}">Products</a>
+              <a class="nav-link" href="{% url 'products' %}">Products</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link cblack" href="{% url 'contact' %}">Contact</a>
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link cblack" href="/admin">Admin</a>
+              <a class="nav-link" href="/admin">Admin</a>
             </li>
           </ul>
           {% if user.is_authenticated %}
-            <a class="btn btn-success my-2 my-sm-0" href="/client/logout">Logout</a>
+            <a class="btn btn-dark my-2 my-sm-0" href="/client/logout">Logout</a>
           {% else %}
-            <button class="btn btn-success my-2 my-sm-0 mr-1" type="submit" data-toggle="modal" data-target="#loginModal">Login</button>
-            <button class="btn btn-success my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#signupModal">SignUp</button>
+            <button class="btn btn-dark my-2 my-sm-0 mr-1" type="submit" data-toggle="modal" data-target="#loginModal">Login</button>
+            <button class="btn btn-dark my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#signupModal">Sign Up</button>
           {% endif %}
         </div>
     </nav>
