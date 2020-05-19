@@ -1,26 +1,30 @@
-{% extends 'store/base.html' %} {% load static %} {% block content %}
-<div class="search-bar" style="text-align: center; justify-content: center;">
-    <span>
-      <input
-        type="text"
-        class="searchBar"
-        placeholder="Search here"
-        style="width: 50vh; height: 7vh;"
-      />
-      <button>
-        <img
-          src="{% static 'store/img/svg/search.svg' %}"
-          height="39px"
-          width="34px"
+{% extends 'store/base.html' %} 
+{% load static %} 
+
+{% block content %}
+<div class="row search-bar" style="text-align: center; justify-content: center;margin-top: 40px;margin-bottom: 70px;">
+    <div clas = "col-md-2"></div>
+    <div class = "col-md-5 shadow-lg p-2 bg-white rounded mx-4">
+        <input
+          type="text"
+          class="searchBar no-outline"
+          placeholder="Search here"
+          style="width:80%;border:none;text-align: left;font-size: 20px;margin-top:5px;"
         />
-      </button>
-    </span>
+        <a href = "#" class = "btn" style = "background-color: aquamarine;justify-content:right ;">
+          <img
+            src="{% static 'store/img/svg/search.svg' %}"
+            height="30px"
+            width="34px"
+          />
+        </a>
+    </div>
 </div>
 
 <div class="row" style="text-align: center; justify-content: center;">
   {% for i in Book %}
   <div
-    class="card"
+    class="card shadow-lg p-3 mb-5 bg-white rounded"
     style="width: 250px; padding: 10px; margin-left: 10px; margin-top: 20px;"
   >
     <img
@@ -48,9 +52,9 @@
           >{{i.book_author }}</a
         >
       </div>
-      <div style="min-height: 60px; padding: 10px;">
+      <!-- <div style="min-height: 60px; padding: 10px;">
         <a class="card-title">{{i.book_desc}}</a>
-      </div>
+      </div> -->
       <!-- <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_status}}</a></div>
                     <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_date}}</a></div>
                     <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_class}}</a></div>
