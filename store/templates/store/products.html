@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> edfffce01198bd86cf9327138fff38e95e4aa9f5
 {% extends 'store/base.html' %} 
 {% load static %} 
 
@@ -19,9 +23,124 @@
           />
         </a>
     </div>
+<<<<<<< HEAD
+=======
+=======
+{% extends 'store/base.html' %} {% load static %} {% block content %}
+
+<div class="container">
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="inputquery" class="sr-only"></label>
+      <input type="password" class="form-control" id="inputquery" name="inputquery" placeholder="Search books...">
+    </div>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-dark mb-2">Search</button>
+  </form>
 </div>
 
-<div class="row" style="text-align: center; justify-content: center;">
+
+<div class="row m-2 mt-3">
+  <div class="col-lg-3 p-2">
+      <h2>Filter</h2>
+      <br />
+      <form>
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="cseSwitch">
+          <label class="custom-control-label" for="cseSwitch">CSE</label>
+        </div>
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="eceSwitch">
+          <label class="custom-control-label" for="eceSwitch">ECE</label>
+        </div>
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="eceSwitch">
+          <label class="custom-control-label" for="eceSwitch">ME</label>
+        </div>
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="eeSwitch">
+          <label class="custom-control-label" for="eeSwitch">EE</label>
+        </div>
+        <br />
+        {% csrf_token %}
+        <button type="submit" class="btn btn-dark">Apply</button>
+      </form>
+  </div>
+
+  <div class="col-lg-9">
+    <div class="row">
+      <div class="col-lg-6 p-1"> 
+        <div class="card">
+          <div class="row">
+            <div class="col-lg-3 p-4">
+              <img src="https://images.unsplash.com/photo-1564522047327-2b0e1766fae0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+            </div>
+            <div class="col-lg-9">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-dark">Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 p-1">
+        <div class="card">
+          <div class="row">
+            <div class="col-lg-3 p-4">
+              <img src="https://images.unsplash.com/photo-1564522047327-2b0e1766fae0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+            </div>
+            <div class="col-lg-9">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-dark">Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 p-1">
+        <div class="card">
+          <div class="row">
+            <div class="col-lg-3 p-4">
+              <img src="https://images.unsplash.com/photo-1564522047327-2b0e1766fae0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+            </div>
+            <div class="col-lg-9">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-dark">Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 p-1">
+        <div class="card">
+          <div class="row">
+            <div class="col-lg-3 p-4">
+              <img src="https://images.unsplash.com/photo-1564522047327-2b0e1766fae0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+            </div>
+            <div class="col-lg-9">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-dark">Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+>>>>>>> 5cd483f8fd533e62958fc4f8bb9e42e0003faabd
+>>>>>>> edfffce01198bd86cf9327138fff38e95e4aa9f5
+</div>
+
+<!-- <div class="row" style="text-align: center; justify-content: center;">
   {% for i in Book %}
   <div
     class="card shadow-lg p-3 mb-5 bg-white rounded"
@@ -58,12 +177,12 @@
       <!-- <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_status}}</a></div>
                     <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_date}}</a></div>
                     <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_class}}</a></div>
-                    <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_category }}</a></div> -->
+                    <div style = "min-height: 60px;padding:10px;"><a class="card-title" style = "font-weight: 600;font-size: 15px;">{{i.book_category }}</a></div> 
       <div style="min-height: 30px; padding: 10px;">
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>
   {% endfor %}
-</div>
+</div> -->
 {% endblock %}
