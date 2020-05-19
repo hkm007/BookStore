@@ -1,6 +1,16 @@
-{% extends 'store/base.html' %} {% block content %}
+{% extends 'store/base.html' %} 
+{% block content %}
+
+{% if msg_disp %}
+<div class="alert alert-success alert-dismissible fade show" role="alert" style = "margin-top: 20px;">
+  <strong>{{msg}}</strong>.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
 <div class="row" style="margin-top: 70px;">
-  <div class="col-md-3">
+  <div class="col-md-4">
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
       <div class="card-body">
         <h5 class="card-title">Contact Us</h5>
@@ -18,14 +28,14 @@
   </div>
   <div class="col-md-8">
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
-      <form action="/contact/post" method="POST" style = "padding: 10px;">
+      <form action="" method="POST" style = "padding: 10px;" enctype="multipart/form-data">
         <div class="form-group">
           <label for="qname">Name</label>
           <input
             type="text"
             class="form-control"
             id="qname"
-            name="qname"
+            name="UserName"
             placeholder="Name"
             required
           />
@@ -36,7 +46,7 @@
             type="email"
             class="form-control"
             id="email"
-            name="email"
+            name="UserEmail"
             placeholder="name@example.com"
             required
           />
@@ -46,7 +56,7 @@
           <textarea
             class="form-control"
             id="message"
-            name="message"
+            name="UserMessage"
             rows="3"
             required
           ></textarea>
