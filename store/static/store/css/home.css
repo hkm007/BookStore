@@ -1,3 +1,7 @@
-.corousel_bg{
-    background-color: black;
+.corousel_bg {
+  background-color: black;
+}
+
+.no-outline:focus {
+  outline: none;
 }
