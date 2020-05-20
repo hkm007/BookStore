@@ -72,6 +72,7 @@
                     <label for="loginpassword">Password</label>
                     <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password" required>
                   </div>
+                  <div class="g-recaptcha" data-sitekey="6LcMOvoUAAAAAPfwwcHaUtD6R4oNRtET3tFEe7MB"></div><br />
                   {% csrf_token %}
                   <button type="submit" class="btn btn-primary">Login</button>
                 </form>
@@ -105,6 +106,7 @@
                       <label for="password">Password</label>
                       <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6LcMOvoUAAAAAPfwwcHaUtD6R4oNRtET3tFEe7MB"></div><br />
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary">Sign Up</button>
                 </form>
@@ -117,7 +119,7 @@
     <div class="container mt-2">
         <!-- messages -->
         {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} mt-1" role="alert">
+          <div class="alert alert-{{ message.tags }} mt-2" role="alert">
             {{ message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -128,22 +130,19 @@
         {% block content %}{% endblock %}
     </div>
 
-    <!-- <div id="footer-color"></div>
-    <footer class="site-footer">
-      <div>
-        <p class="copyright-text">
-          Copyright &copy;
-          <script>
-            const year = new Date().getFullYear();
-            document.write(year);
-          </script>
-          <a id="footer-logo"><strong>Pingoo API</strong></a
-          >. All Rights Reserved.
-        </p>
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark text-white">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">Copyright © 2020-21. All Rights Reserved.
       </div>
-    </footer> -->
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
 
     <!-- Optional JavaScript -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

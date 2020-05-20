@@ -1,14 +1,15 @@
 {% extends 'store/base.html' %} 
 {% block content %}
 
-{% if msg_disp %}
+<!-- {% if msg_disp %}
 <div class="alert alert-success alert-dismissible fade show" role="alert" style = "margin-top: 20px;">
   <strong>{{msg}}</strong>.
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-{% endif %}
+{% endif %} -->
+
 <div class="row" style="margin-top: 70px;">
   <div class="col-md-4">
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
@@ -28,14 +29,14 @@
   </div>
   <div class="col-md-8">
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
-      <form action="contact/post" method="POST" style = "padding: 10px;" enctype="multipart/form-data">
+      <form action="contact/post" method="POST" style = "padding: 10px;">
         <div class="form-group">
           <label for="qname">Name</label>
           <input
             type="text"
             class="form-control"
             id="qname"
-            name="UserName"
+            name="qname"
             placeholder="Name"
             required
           />
@@ -46,7 +47,7 @@
             type="email"
             class="form-control"
             id="email"
-            name="UserEmail"
+            name="email"
             placeholder="name@example.com"
             required
           />
@@ -56,7 +57,7 @@
           <textarea
             class="form-control"
             id="message"
-            name="UserMessage"
+            name="message"
             rows="3"
             required
           ></textarea>
@@ -72,6 +73,7 @@
             >Do you have an account on this website ?</label
           >
         </div>
+        <div class="g-recaptcha" data-sitekey="6LcMOvoUAAAAAPfwwcHaUtD6R4oNRtET3tFEe7MB"></div><br />
         {% csrf_token %}
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
