@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Book
 from django.core.mail import EmailMessage,send_mail
 from django.conf import settings
@@ -49,3 +50,12 @@ def handlecontact(request):
         return redirect('contact')
     else:
         return HttpResponse('Error: 404 Not Found')
+
+@login_required
+def cart(request):
+    # if request.user.is_authenticated:
+    #     return render(request, 'store/cart.html')
+    # else:
+    #     return HttpResponse('Error: 404 Not Found')
+    return render(request, 'store/cart.html')
+    
