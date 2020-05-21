@@ -1,3 +1,7 @@
 *.pyc
-__pycache__/
+client/__pycache__/
+client/migrations/__pycache__/
+server/__pycache__/
+store/__pycache__/
+store/migrations/__pycache__/
 *.sqlite3
