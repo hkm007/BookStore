@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Book in DB</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div
+            style="
+              box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+              border-radius: 10px;
+              text-align: left;
+              padding-bottom: 40px;
+              margin-top: 20px;
+              margin-bottom: 30px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-7">
+                <h2 style = "text-align: center;padding-top: 40px;padding-bottom:20px;font-weight: 500;font-style: oblique;">Add Book Here</h2>
+                <form
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  {% csrf_token %}
+                  <div style="margin-top: 20px;">
+                    Upload Book Image: {{form.book_pic}}
+                  </div>
+                  <div style="margin-top: 20px;">
+                    Book Name: {{form.book_name}}
+                  </div>
+                  <div style="margin-top: 20px;">
+                    Book Price: {{form.book_price}}
+                  </div>
+                  <div style="margin-top: 20px;">
+                    Book Author; {{form.book_author}}
+                  </div>
+                  <div style="margin-top: 20px;">
+                    Book Desc: {{form.book_desc}}
+                  </div>
+                  <div style="margin-top: 20px;">
+                    Book Status: {{form.book_status}}
+                  </div>
+                  <div style="margin-top: 20px;">
+                    Book Uploaded Date: {{form.book_date}}
+                  </div>
+                  <div style="margin-top: 20px;">
+                    Book Class: {{form.book_class}}
+                  </div>
+                  <div style="margin-top: 20px;">
+                    Book Category: {{form.book_category}}
+                  </div>
+                  <div style="margin-top: 20px;">
+                    <button type="submit" class="btn btn-success">
+                      Extract Text
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </body>
+</html>

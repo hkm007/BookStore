@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseNotFound
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Book
@@ -8,6 +8,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 import requests
 import json
+from .book_form import BookForm
 
 def home(request):
     return render(request, 'store/home.html')
@@ -16,6 +17,10 @@ def products(request):
     data = Book.objects.all()
     params = {'Book':data}
     return render(request, 'store/products.html',params)
+
+def productView(request,my_id):
+    data = Book.objects.filter(book_id = my_id)
+    return render(request,'store/productView.html',{"product":data[0]})
 
 def handlefilter(request):
     if request.method == 'POST':
@@ -71,4 +76,23 @@ def cart(request):
         return render(request, 'store/cart.html')
     else:
         return HttpResponse('Error: 404 Not Found')
+
+###################### This is for admin only ########################
+
+def addBook(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            print("saved successfully--------------------------------------------------------------------")
+            msg = "The form has been submitted successfully"
+            params = {"form":form,"msg":msg}
+            return render(request,'store/addBook.html',params)
+        else:
+            return HttpResponseNotFound("OOps Page not Found")
+    else:
+        form = BookForm()
+        msg = False
+        params = {"form":form,"msg":msg}
+        return render(request,'store/addBook.html',params)
     
