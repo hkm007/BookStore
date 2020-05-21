@@ -12,7 +12,7 @@
           <input
             type="text"
             class="searchBar no-outline"
-            placeholder="Search here"
+            placeholder="Search books..."
             style="
               width: 80%;
               border: none;
@@ -39,19 +39,25 @@
     <div class="col-md-3">
       <div style = "margin-top: 20px;position: fixed;border-radius: 20px;box-shadow: 5px 10px 20px 2px rgba(20, 20, 20, 0.175);margin-bottom: 40px;"> 
         <div class="card-body">
-          <h5 class="card-title" style = "text-align: center;">Categories</h5>
+          <h5 class="card-title" style = "text-align: center;">Filter</h5>
           <p class="card-text">
             Search By Branch
           </p>
-          <p class="card-text">
-            Search By Tag Name
-          </p>
-          <p class="card-text">
-            Search By Author Name
-          </p>
-          <p class="card-text">
-            Search By Book Title
-          </p>
+          <form action="/books/filter" method="POST">
+            <div class="form-group">
+              <label for="branchSelect">Branch</label>
+              <select class="form-control" id="branchSelect" name="branchSelect">
+                <option>CSE</option>
+                <option>ECE & EE & EI</option>
+                <option>ME & PE</option>
+                <option>CE</option>
+                <option>CHE & BE</option>
+                <option>Maths</option>
+              </select>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-dark">Apply</button>
+          </form>
         </div>
       </div>
     </div>

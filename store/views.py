@@ -17,6 +17,14 @@ def products(request):
     params = {'Book':data}
     return render(request, 'store/products.html',params)
 
+def handlefilter(request):
+    if request.method == 'POST':
+        branchSelect = request.POST.get('branchSelect')
+        print(branchSelect)
+        return redirect('products')
+    else:
+        return HttpResponse('Error: 404 Not Found')
+
 def contact(request):
     return render(request, 'store/contact.html')
 

@@ -25,9 +25,13 @@ def signup(request):
         verify = response['success']
 
         if verify:
-            # logic for same username and email to be implemented
-            User.objects.create_user(username, email, password)
-            messages.success(request, 'Account Successfully created! Now you can login.')
+            # logic for same username 
+            if User.objects.filter(username=username).exists():
+                messages.warning(request, 'User with this username already exists!')
+            else:
+                User.objects.create_user(username, email, password)
+                messages.success(request, 'Account Successfully created! Now you can login.')
+            
         else:
             messages.warning(request, 'reCaptcha not verfied!')
         
