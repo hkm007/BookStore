@@ -10,9 +10,19 @@ class Book(models.Model):
         ('old','old'),
         ('new','new')
     )
-    CATEGORY = (
+    TAGS = (
         ('Technical','Technical'),
         ('Story','Story')
+    )
+
+    BRANCH = (
+        ('ALL','ALL'),
+        ('CSE','CSE'),
+        ('EE','EE'),
+        ('EI','EI'),
+        ('ME','ME'),
+        ('PE','PE'),
+        ('ECE','ECE')
     )
 
     book_id = models.AutoField(primary_key=True)
@@ -24,7 +34,9 @@ class Book(models.Model):
     book_pic = models.ImageField(upload_to='img/',default="None Selected")
     book_date = models.DateField(max_length=20)
     book_class = models.CharField(max_length=20,choices=CLASS)
-    book_category  = models.CharField(max_length=20,choices=CATEGORY)
+    book_branch  = models.CharField(max_length=40,choices=BRANCH,default = 'ALL')
+    book_tag  = models.CharField(max_length=20,choices=TAGS,default = 'None')
+    
 
     def __str__(self):
         return self.book_name

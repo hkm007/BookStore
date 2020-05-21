@@ -85,6 +85,7 @@ def addBook(request):
         if form.is_valid():
             form.save()
             print("saved successfully--------------------------------------------------------------------")
+            form = BookForm()
             msg = "The form has been submitted successfully"
             params = {"form":form,"msg":msg}
             return render(request,'store/addBook.html',params)
