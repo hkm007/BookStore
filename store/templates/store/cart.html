@@ -1,0 +1,11 @@
+{% extends 'store/base.html' %} 
+{% block title%}Pingoo Bookstore | Cart{% endblock %}
+{% block content %}
+<div class="col-md-1"></div>
+<div class="col-md-10" style = "min-height: 100vh;">
+  <div class="row" style="margin-top: 70px;">
+      <h1>Welcome to cart {{request.user}}</h1>
+  </div>
+</div>
+<div class = "col-md-1"></div>
+{% endblock %}
