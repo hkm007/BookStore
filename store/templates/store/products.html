@@ -1,11 +1,7 @@
-{% extends 'store/base.html' %} 
-{% load static %} 
-
-{% block title%}Pingoo Bookstore | Products {% endblock %}
-{% block content %}
+{% extends 'store/base.html' %} {% load static %} {% block content %}
 <div class="col-md-1"></div>
-<div class="col-md-10" style = "margin-bottom:40px;min-height: 100vh;">
-  <div class="row mx-4" style="margin-top: 30px; margin-bottom: 50px;">
+<div class="col-md-10" style = "margin-bottom:40px;">
+  <div class="row" style="margin-top: 30px; margin-bottom: 50px;">
     <div class="col-md-4"></div>
     <div
       class="col-md-5"
@@ -16,7 +12,7 @@
           <input
             type="text"
             class="searchBar no-outline"
-            placeholder="Search here"
+            placeholder="Search books..."
             style="
               width: 80%;
               border: none;
@@ -98,9 +94,9 @@
               >{{i.book_author }}</a
             >
           </div>
-          <div style="min-height: 30px;display: inline;text-align: center;justify-content: space-around;">
-            <a href="/products/{{i.book_id}}" class="btn btn-secondary" style = "font-size: 14px;text-align: center;">View</a>
-            <a href="/products/{{i.book_id}}" class="btn btn-dark" style = "font-size: 14px;text-align: center;">Add To Cart</a>
+          <div style="min-height: 30px;display: inline;text-align: center;justify-content: center;">
+            <a href="#" class="btn btn-dark" style = "font-size: 14px;">Add to Cart</a>
+            <a href="#" class="btn btn-secondary" style = "font-size: 14px;">View</a>
           </div>
         </div>
       </div>
@@ -132,4 +128,3 @@
   </div>
 </div>
 {% endblock %}
-
