@@ -18,23 +18,6 @@ def products(request):
     return render(request, 'store/products.html',params)
 
 def contact(request):
-    # params  = {"msg_disp":False}
-    # if request.method == 'POST':
-    #     userName = request.POST.get('UserName','')
-    #     userEmail = request.POST.get('UserEmail','')
-    #     userMsg = request.POST.get('UserMessage')
-    #     template = render_to_string('store/contact_message.html',{'UserName':userName,'UserEmail':userEmail,'UserMsg':userMsg})
-    #     email = EmailMessage(
-    #         'Message from '+userName,
-    #         template,
-    #         settings.EMAIL_HOST_USER,
-    #         ['deeprajbaiddya@gmail.com']
-    #     )
-    #     email.fail_silently = False
-    #     email.send()
-    #     params = {"msg_disp":True,"msg":"Your form has been submitted successfully."}
-    #     return render(request,'store/contact.html',params)
-    # else:
     return render(request, 'store/contact.html')
 
 def handlecontact(request):

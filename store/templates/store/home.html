@@ -4,6 +4,8 @@
 
 {% block content %}
     {% if user.is_authenticated %}
+    <div class = "col-md-1"></div>
+    <div class = "col-md-10">
         <h1>Welcome to this website!!</h1>
         <p>You are logged in as {{ request.user }}</p>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style = "padding:20px;">
@@ -28,10 +30,12 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
+      </div>
+      <div class = "col-md-1"></div>
     {% else %}
-        <div>
+    <div class  ="col-md-1"></div>
+    <div class = "col-md-10">
             <h1>Welcome to this website!!</h1>
-        </div>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style = "padding:20px;">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -54,5 +58,7 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
+      </div>
+      <div class = "col-md-1"></div>
     {% endif %}
 {% endblock %}
