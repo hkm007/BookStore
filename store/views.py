@@ -19,8 +19,15 @@ def products(request):
     return render(request, 'store/products.html',params)
 
 def productView(request,my_id):
-    data = Book.objects.filter(book_id = my_id)
-    return render(request,'store/productView.html',{"product":data[0]})
+    if request.method == 'POST':
+        ## HKM addtocart functionality here ------------------
+        messages.success(request,'The item has been added to your Cart')
+        data = Book.objects.get(book_id = my_id)
+        return render(request,'store/productView.html',{"product":data})
+    else:
+        data = Book.objects.get(book_id = my_id)
+        params = {'cart':False,"product":data}
+        return render(request,'store/productView.html',params)
 
 def handlefilter(request):
     if request.method == 'POST':

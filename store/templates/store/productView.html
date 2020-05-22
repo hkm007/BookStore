@@ -21,8 +21,11 @@
                 <div class = "book_author" style = "font-size: 22px;font-weight: 400;">{{product.book_class}}</div>
                 <div class = "book_author" style = "font-size: 22px;font-weight: 400;">{{product.book_tag}}</div>
                 <div>
-                    <button class = "btn btn-dark my-2">Buy Now</button>
-                    <button class = "btn btn-secondary my-2">Add To Cart</button>
+                    <form action="/products/{{product.book_id}}" method="POST">
+                      {% csrf_token %}
+                      <button class = "btn btn-dark my-2" style = "color:white;">Buy Now</button>
+                      <button type = "submit" class = "btn btn-secondary my-2" name = "addCart" style = "color:white;">Add To Cart</button>
+                    </form> 
                 </div>
             </div>
         </div>
