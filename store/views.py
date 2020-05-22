@@ -24,9 +24,16 @@ def productView(request,my_id):
 
 def handlefilter(request):
     if request.method == 'POST':
-        branchSelect = request.POST.get('branchSelect')
-        print(branchSelect)
-        return redirect('products')
+        # branches = ['ALL','CSE','ECE','EE','EI','ME','PE','CHE & BE','BSMS & BTMT']
+        branchSelected = request.POST.get('branchSelect')
+        params = {}
+        if (branchSelected == 'ALL'):
+            allBook = Book.objects.all()
+            params = {"branch":branchSelected,"Book":allBook}
+        else:
+            filtered_books = Book.objects.filter(book_branch = branchSelected)
+            params = {"branch":branchSelected,"Book":filtered_books}
+        return render(request,'store/products.html',params)
     else:
         return HttpResponse('Error: 404 Not Found')
 

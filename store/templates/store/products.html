@@ -51,12 +51,16 @@
             <div class="form-group">
               <label for="branchSelect">Branch</label>
               <select class="form-control" id="branchSelect" name="branchSelect">
+                <option>ALL</option>
                 <option>CSE</option>
-                <option>ECE & EE & EI</option>
-                <option>ME & PE</option>
+                <option>ECE</option>
+                <option>EE</option>
+                <option>ME</option>
+                <option>EI</option>
                 <option>CE</option>
+                <option>PE</option>
                 <option>CHE & BE</option>
-                <option>Maths</option>
+                <option>BSMS & BTMT</option>
               </select>
             </div>
             {% csrf_token %}
@@ -98,6 +102,7 @@
               >{{i.book_author }}</a
             >
           </div>
+          <div class = "branchName" style = "text-align: center;color:rgb(7, 150, 102);padding:10px;">#{{i.book_branch}}</div>
           <div style="min-height: 30px;display: inline;text-align: center;justify-content: space-around;">
             <a href="/products/{{i.book_id}}" class="btn btn-dark" style = "font-size: 14px;text-align: center;width: 150px">View</a>
           </div>
@@ -131,3 +136,4 @@
   </div>
 </div>
 {% endblock %}
+<script src = "../../static/store/js/main.js"
