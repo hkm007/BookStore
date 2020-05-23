@@ -21,37 +21,11 @@
                 <div class = "book_author" style = "font-size: 22px;font-weight: 400;">{{product.book_class}}</div>
                 <div class = "book_author" style = "font-size: 22px;font-weight: 400;">{{product.book_tag}}</div>
                 <div>
-                    <form action="/products/{{product.book_id}}" method="POST">
-                      {% csrf_token %}
-                      <button class = "btn btn-dark my-2" style = "color:white;">Buy Now</button>
-                      <button type = "submit" class = "btn btn-secondary my-2" name = "addCart" style = "color:white;">Add To Cart</button>
-                    </form> 
+                <a href="{% url 'checkout' product.book_id %}" class = "btn btn-dark my-2" style = "color:white;">Buy Now</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class = "col-md-1">
-    <div
-    class="btn"
-    style="
-      margin-top: 20px;
-      width: 80px;
-      position: fixed;
-      background-color: rgb(39, 238, 178);
-      border-radius: 40px;
-      box-shadow: 0 20px 20px rgba(0, 0, 0, 0.175);
-      margin-right: 10vh;
-    "
-  >
-    <a href="{% url 'cart' %}" style="text-align: left; width: auto;"
-      ><img
-        src="{% static 'store/img/svg/shopping-cart.svg' %}"
-        style="background-color: transparent;"
-        width="40px"
-        height="50px"
-    /></a>
-  </div>
 </div>
 
 {% endblock %}

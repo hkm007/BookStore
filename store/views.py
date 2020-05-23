@@ -19,15 +19,14 @@ def products(request):
     return render(request, 'store/products.html',params)
 
 def productView(request,my_id):
-    if request.method == 'POST':
-        ## HKM addtocart functionality here ------------------
-        messages.success(request,'The item has been added to your Cart')
+    if request.user.is_authenticated:
         data = Book.objects.get(book_id = my_id)
-        return render(request,'store/productView.html',{"product":data})
-    else:
-        data = Book.objects.get(book_id = my_id)
-        params = {'cart':False,"product":data}
+        params = {"product":data}
         return render(request,'store/productView.html',params)
+    else:
+        messages.warning(request, 'You must be logged in.')
+        return redirect('products')
+        
 
 def handlefilter(request):
     if request.method == 'POST':
@@ -85,11 +84,14 @@ def handlecontact(request):
     else:
         return HttpResponse('Error: 404 Not Found')
 
-def cart(request):
+def checkout(request, x_id):
     if request.user.is_authenticated:
-        return render(request, 'store/cart.html')
+        data = Book.objects.get(book_id = x_id)
+        params = {"product":data}
+        return render(request, 'store/checkout.html', params)
     else:
-        return HttpResponse('Error: 404 Not Found')
+        messages.warning(request, 'You must be logged in.')
+        return redirect('products')
 
 ###################### This is for admin only ########################
 

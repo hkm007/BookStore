@@ -3,9 +3,15 @@
 {% block title%}TroyCart | Home {% endblock %}
 
 {% block content %}
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to TroyCart</h1>
+  <p class="lead">The Online BookStore</p>
+  <p>I am CEO Bitch!</p>
+  <a class="btn btn-primary btn-lg" href="{% url 'products' %}" role="button">Start Shopping</a>
+</div>
+
 <div class="col-md-1"></div>
 <div class="col-md-10">
-  <h1>Welcome to this website!!</h1>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="padding:20px;">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

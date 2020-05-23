@@ -44,8 +44,6 @@
             </li>
           </ul>
           {% if user.is_authenticated %}
-            <a class="nav-link cblack" href="{% url 'cart' %}"><i class="fas fa-cart-plus fa-lg px-0"></i></a>
-            <a class="nav-link cblack" href="#"><i class="fas fa-cog fa-lg px-0"></i></a>
             <a class="btn btn-dark my-2 my-sm-0" style = "min-width: 100px;" href="/client/logout">Logout</a>
           {% else %}
             <span style = "padding-top:10px;padding-bottom:10px;">
@@ -61,7 +59,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h3 class="modal-title" id="loginModalTitle">Login</h3>
+            <h3 class="modal-title" id="loginModalTitle"><i class="fas fa-sign-in-alt"></i> Login</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -69,17 +67,20 @@
             <div class="modal-body">
                 <form action="/client/login" method="POST">
                   <div class="form-group">
-                    <label for="loginusername">Username</label>
+                    <label for="loginusername"><i class="fas fa-user"></i> Username</label>
                     <input type="text" class="form-control" id="loginusername" name="loginusername" aria-describedby="usernameHelp" placeholder="Username" required>
                   </div>
                   <div class="form-group">
-                    <label for="loginpassword">Password</label>
+                    <label for="loginpassword"><i class="fas fa-key"></i> Password</label>
                     <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password" required>
                   </div>
                   <div class="g-recaptcha" data-sitekey="6LcMOvoUAAAAAPfwwcHaUtD6R4oNRtET3tFEe7MB"></div><br />
                   {% csrf_token %}
                   <button type="submit" class="btn btn-primary">Login</button>
                 </form>
+            </div>
+            <div class="modal-footer">
+              <p>Forgot password ?</p>
             </div>
         </div>
         </div>
@@ -90,7 +91,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h3 class="modal-title" id="signupModalTitle">Sign Up</h3>
+            <h3 class="modal-title" id="signupModalTitle"><i class="fas fa-user-plus"></i> Sign Up</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -98,16 +99,16 @@
             <div class="modal-body">
                 <form action="/client/signup" method="POST">
                     <div class="form-group">
-                      <label for="username">Username</label>
+                      <label for="username"><i class="fas fa-user"></i> Username</label>
                       <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
                     </div>
                     <div class="form-group">
-                      <label for="email">Email</label>
+                      <label for="email"><i class="fas fa-envelope"></i> Email</label>
                       <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
-                      <label for="password">Password</label>
+                      <label for="password"><i class="fas fa-key"></i> Password</label>
                       <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                     </div>
                     <div class="g-recaptcha" data-sitekey="6LcMOvoUAAAAAPfwwcHaUtD6R4oNRtET3tFEe7MB"></div><br />
@@ -132,6 +133,7 @@
         {% endfor %}
       </div>
     </div>
+    
     <div class="row">
       <!-- messages -->
       {% block content %}
