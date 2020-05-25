@@ -11,31 +11,34 @@
       class="col-md-5"
       style="box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); border-radius: 10px;"
     >
+    <form action = "" method = "POST" >
+      {% csrf_token %}
       <div class="row" style="border-radius: 10px;">
-        <div class="col-md-10" style="padding-top: 5px;">
-          <input
-            type="text"
-            class="searchBar no-outline"
-            placeholder="Search books..."
-            style="
-              width: 80%;
-              border: none;
-              text-align: left;
-              font-size: 20px;
-              margin-top: 5px;
-            "
-          />
-        </div>
-        <div class="col-md-2" style="background-color: aquamarine;">
-          <a href="#" class="btn">
-            <img
-              src="{% static 'store/img/svg/search.svg' %}"
-              height="39px"
-              width="34px"
+          <div class="col-md-10" style="padding-top: 5px;">
+            <input
+              type="text"
+              class="searchBar no-outline"
+              placeholder="Search books..."
+              style="
+                width: 80%;
+                border: none;
+                text-align: left;
+                font-size: 20px;
+                margin-top: 5px;
+              "
             />
-          </a>
-        </div>
+          </div>
+          <div class="col-md-2" style="background-color: aquamarine;">
+            <button type = "submit" class="btn">
+              <img
+                src="{% static 'store/img/svg/search.svg' %}"
+                height="39px"
+                width="34px"
+              />
+            </button>
+          </div>
       </div>
+    </form>
     </div>
     <div class="col-md-3"></div>
   </div>
@@ -47,7 +50,7 @@
           <p class="card-text">
             Search By Branch
           </p>
-          <form action="/books/filter" method="POST">
+          <form action="/products/filter" method="POST">
             <div class="form-group">
               <label for="branchSelect">Branch</label>
               <select class="form-control" id="branchSelect" name="branchSelect">
@@ -94,7 +97,7 @@
             <a
               class="card-title"
               style="font-weight: 600; padding: 20px; color: rgb(241, 50, 162);"
-              >₹{{i.book_price }}</a
+              >₹{{i.book_price|floatformat:2 }}</a
             >
           </div>
           <div style="min-height: 80px; padding: 10px;text-align: center;justify-content: center;">
@@ -114,4 +117,3 @@
   </div>
 </div>
 {% endblock %}
-<script src = "../../static/store/js/main.js"
