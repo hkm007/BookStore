@@ -1,16 +1,16 @@
 {% extends 'store/base.html' %}
-{% block title%}TroyCart | Cart{% endblock %}
+{% block title%}TroyCart | Checkout {% endblock %}
 {% block content %}
 <div class = "col-md-1"></div>
-<div class = "col-md-10" style = "min-height: 100vh;">
+<div class = "col-md-10">
   <div class = "container">
-      <div class = "row" style = "margin-top: 40px;box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); border-radius: 10px;padding-top:40px;padding-left: 20px;padding-bottom: 40px;">
-          <div class = "col-md-3">
+      <div class = "row mx-1" style = "margin-top: 40px;box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); border-radius: 10px;padding-top:40px;padding-left: 20px;padding-bottom: 40px;">
+          <div class = "col-md-2">
               <div>
-                  <img src = "/media/{{product.book_pic}}" width = "133px" height = "215px">
+                  <img src = "/media/{{product.book_pic}}" width = "150px" height = "215px">
               </div>
           </div>
-          <div class = "col-md-9">
+          <div class = "col-md-9" style = "padding-left:20px;">
               <div class = "book_name" style = "font-weight: 500;font-size: 50px;font-style: oblique;">{{product.book_name}}</div>
               <div class = "book_price" style = "color: rgb(241, 50, 162);font-size: 20px;font-weight: 500;">₹ {{product.book_price}}</div>
               <div class = "book_author" style = "font-size: 22px;font-weight: 400;">Writer/Author: {{product.book_author}}</div>
@@ -21,41 +21,42 @@
       </div>
   </div>
 </div>
-
-<!-- <div class = "col-md-1"></div> -->
-<div class = "col-md-10" style = "min-height: 100vh;">
-  <div class = "container">
-      <div class="p-3" style = "margin-top: 40px;box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); border-radius: 10px;">
-        <h2>Billing Details</h2><hr />
-        <form>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="firstname">First Name</label>
-              <input type="text" class="form-control" id="firstname" placeholder="First Name">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword4">Last Name</label>
-              <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputEmail4">Email</label>
-              <input type="email" class="form-control" id="inputEmail4" placeholder="First Name">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword4">Phone</label>
-              <input type="password" class="form-control" id="inputPassword4" placeholder="Last Name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputAddress2">Address</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-          </div>
-          <button type="submit" class="btn btn-success btn-lg btn-block">Place Order</button>
-        </form>
-      </div>
-  </div>
-</div>
 <div class = "col-md-1"></div>
+  <div class = "col-md-1"></div>
+  <div class = "col-md-10">
+    <div class = "container">
+        <div style = "margin-top: 40px;box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); border-radius: 10px;margin-top: 50px;margin-bottom: 40px;padding:30px;">
+          <h2>Billing Details</h2><hr />
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="First Name">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="email1">Email</label>
+                <input type="email" class="form-control" id="email1" placeholder="First Name">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="phone">Phone</label>
+                <input type="password" class="form-control" id="phone" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Address</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="Apartment, studio, or floor">
+            </div>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Place Order</button>
+          </form>
+        </div>
+    </div>
+  </div>
+  <div class = "col-md-1"></div>
+
 {% endblock %}

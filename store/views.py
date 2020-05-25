@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseNotFound
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Book

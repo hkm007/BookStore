@@ -55,16 +55,16 @@
     </nav>
   
     <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true" style = "background-image: url({% static 'store/img/cover22.png' %});background-repeat:no-repeat;background-size: cover;">
         <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style = "background-image: url({% static 'store/img/112.png' %});">
             <div class="modal-header">
-            <h3 class="modal-title" id="loginModalTitle"><i class="fas fa-sign-in-alt"></i> Login</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h3 class="modal-title" id="loginModalTitle" style = "color: white;"><i class="fas fa-sign-in-alt"></i> Login</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style = "color: white;">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style = "color: white;">
                 <form action="/client/login" method="POST">
                   <div class="form-group">
                     <label for="loginusername"><i class="fas fa-user"></i> Username</label>
@@ -80,23 +80,25 @@
                 </form>
             </div>
             <div class="modal-footer">
-              <p>Forgot password ?</p>
+              <a href="{% url 'reset_password' %}" class="ml-2" style = "color: white;"
+                >Forgot Password ?</a>
             </div>
         </div>
         </div>
     </div>
 
     <!-- SignUp Modal -->
-    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalTitle" aria-hidden="true">
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalTitle" aria-hidden="true"
+    style = "background-image: url({% static 'store/img/cover22.png' %});background-repeat:no-repeat;background-size: cover;">
         <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style = "background-image: url({% static 'store/img/112.png' %});background-repeat:no-repeat;background-size: cover;color:white;">
             <div class="modal-header">
             <h3 class="modal-title" id="signupModalTitle"><i class="fas fa-user-plus"></i> Sign Up</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style = "color: white;">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style = "margin:10px;">
                 <form action="/client/signup" method="POST">
                     <div class="form-group">
                       <label for="username"><i class="fas fa-user"></i> Username</label>
@@ -105,12 +107,13 @@
                     <div class="form-group">
                       <label for="email"><i class="fas fa-envelope"></i> Email</label>
                       <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
                       <label for="password"><i class="fas fa-key"></i> Password</label>
                       <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                      <small id="passhelp" style = "color:rgb(42, 107, 204);font-size: 13px;margin-top: 50px;color:white;">* We'll never share your credentials with anyone else.</small>
                     </div>
+                   
                     <div class="g-recaptcha" data-sitekey="6LcMOvoUAAAAAPfwwcHaUtD6R4oNRtET3tFEe7MB"></div><br />
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary">Sign Up</button>
@@ -119,7 +122,7 @@
         </div>
         </div>
     </div>
-
+    
     <!-- container -->
     <div class = "row mt-2">
       <div class = "container">
@@ -134,7 +137,7 @@
       </div>
     </div>
     
-    <div class="row">
+    <div class="row" style = "min-height: 100vh;">
       <!-- messages -->
       {% block content %}
       {% endblock %}
