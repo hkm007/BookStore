@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse,HttpResponseNotFound
+from django.http import HttpResponse,HttpResponseNotFound,JsonResponse
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 import requests
 import json
 from .book_form import BookForm
+import datetime
 
 def home(request):
     return render(request, 'store/home.html')
@@ -87,9 +88,23 @@ def handlecontact(request):
 
 def checkout(request, x_id):
     if request.user.is_authenticated:
-        data = Book.objects.get(book_id = x_id)
-        params = {"product":data}
-        return render(request, 'store/checkout.html', params)
+        if request.method == 'POST':
+            print(request.POST)
+            fname = request.POST.get('fname')
+            lname = request.POST.get('lname')
+            emailUser = request.POST.get('emailUser')
+            phone = request.POST.get('userPhone')
+            address = request.POST.get('userAddr')
+            qty = request.POST.get('qty')
+            totalAmt = request.POST.get('tot')
+            current_time = datetime.datetime.now()
+
+            data = {"id":x_id,"meta_data":{"date":current_time},"order":{"fname":fname,"lname":lname,"email":emailUser,"phone":phone,"address":address,"qty":qty,"total":totalAmt}}
+            return JsonResponse(data,json_dumps_params={'indent': 2})
+        else:
+            data = Book.objects.get(book_id = x_id)
+            params = {"product":data}
+            return render(request, 'store/checkout.html', params)
     else:
         messages.warning(request, 'You must be logged in.')
         return redirect('products')

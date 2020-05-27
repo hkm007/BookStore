@@ -1,68 +1,188 @@
-{% extends 'store/base.html' %}
-{% load static %}
-{% block title%}TroyCart | Checkout {% endblock %}
-{% block content %}
-<div class = "col-md-1"></div>
-<div class = "col-md-10" id = "checkoutPage">
-  <div class = "container">
-      <div class = "row mx-1" style = "margin-top: 40px;box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); border-radius: 10px;padding-top:40px;padding-left: 20px;padding-bottom: 40px;">
-          <div class = "col-md-2">
-              <div>
-                  <img src = "/media/{{product.book_pic}}" width = "150px" height = "215px">
-              </div>
-          </div>
-          <div class = "col-md-9" style = "padding-left:20px;">
-              <div class = "book_name" style = "font-weight: 500;font-size: 50px;font-style: oblique;">{{product.book_name}}</div>
-              <div class = "book_price"  style = "color: rgb(241, 50, 162);font-size: 20px;font-weight: 500;">₹ <a id = "bookPrice">{{product.book_price|floatformat:2 }}</a></div>
-              <div class = "book_author" style = "font-size: 22px;font-weight: 400;">Writer/Author: {{product.book_author}}</div>
-              <div class = "book_author" style = "font-size: 22px;font-weight: 400;">{{product.book_desc}}</div>
-              <div>
-                <a style = "font-size: 22px;font-weight: 400;">Quantity:  </a>
-                <button class = "btn btn-dark btn-sm" id = "minus" onclick="quantity('minus')" style = "width:40px;">-</button>
-                <a id = "qty" style = "padding-left:10px;font-size: 17px;color:rgb(233, 24, 153)">1</a>
-                <button class = "btn btn-dark btn-sm" id = "plus" onclick="quantity('plus')" style = "color:white;width:40px;margin-left:10px;">+</button>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<div class = "col-md-1"></div>
-  <div class = "col-md-1"></div>
-  <div class = "col-md-10">
-    <div class = "container">
-        <div style = "margin-top: 40px;box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); border-radius: 10px;margin-top: 50px;margin-bottom: 40px;padding:30px;">
-          <h2>Billing Details</h2><hr />
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="firstname">First Name <a style="color:crimson">*</a></label>
-                <input type="text" class="form-control" id="firstname" placeholder="First Name">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="lastname">Last Name <a style="color:crimson">*</a></label>
-                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="email1">Email <a style="color:crimson">*</a></label>
-                <input type="email" class="form-control" id="email1" placeholder="First Name">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="phone">Phone <a style="color:crimson">*</a></label>
-                <input type="tel" class="form-control" id="phone" placeholder="Mobile No.">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputAddress">Address <a style="color:crimson">*</a></label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="Apartment, studio, or floor">
-            </div>
-            <button type="submit" class="btn btn-success btn-lg btn-block">Place Order</button>
-          </form>
+{% extends 'store/base.html' %} {% load static %} {% block title%}TroyCart |
+Checkout {% endblock %} {% block content %}
+<div class="col-md-1"></div>
+<div class="col-md-10" id="checkoutPage">
+  <div class="container">
+    <div
+      class="row mx-1"
+      style="
+        margin-top: 40px;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+        border-radius: 10px;
+        padding-top: 40px;
+        padding-left: 20px;
+        padding-bottom: 40px;
+      "
+    >
+      <div class="col-md-2">
+        <div>
+          <img src="/media/{{product.book_pic}}" width="150px" height="215px" />
         </div>
+      </div>
+      <div class="col-md-9" style="padding-left: 20px;">
+        <div
+          class="book_name"
+          style="font-weight: 500; font-size: 50px; font-style: oblique;"
+        >
+          {{product.book_name}}
+        </div>
+        <div
+          class="book_price"
+          style="color: rgb(241, 50, 162); font-size: 20px; font-weight: 500;"
+        >
+          ₹ <a id="bookPrice">{{product.book_price|floatformat:2 }}</a>
+        </div>
+        <div class="book_author" style="font-size: 22px; font-weight: 400;">
+          Writer/Author: {{product.book_author}}
+        </div>
+        <div class="book_author" style="font-size: 22px; font-weight: 400;">
+          {{product.book_desc}}
+        </div>
+      </div>
     </div>
   </div>
-  <div class = "col-md-1"></div>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-1"></div>
+<div class="col-md-10">
+  <div class="container">
+    <div
+      style="
+        margin-top: 40px;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+        border-radius: 10px;
+        margin-top: 50px;
+        margin-bottom: 40px;
+        padding: 30px;
+      "
+    >
+      <h2>Billing Details</h2>
+      <hr />
+      <form method="POST" action = "/checkout/{{product.book_id}}">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstname"
+              >First Name <a style="color: crimson;">*</a></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="firstname"
+              name = "fname"
+              placeholder="First Name"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastname"
+              >Last Name <a style="color: crimson;">*</a></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="lastname"
+              name = "lname"
+              placeholder="Last Name"
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="email1">Email <a style="color: crimson;">*</a></label>
+            <input
+              type="email"
+              class="form-control"
+              id="email1"
+              name = "emailUser"
+              placeholder="First Name"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="phone">Phone <a style="color: crimson;">*</a></label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              name = "userPhone"
+              placeholder="Mobile No."
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress"
+            >Address <a style="color: crimson;">*</a></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress"
+            name = "userAddr"
+            placeholder="Apartment, studio, or floor"
+          />
+        </div>
+        <div class="form-row">
+          <div class="quant col-md-6">
+            <label for="quanty">Quantity: </label>           
+              <div class = "row" style = "justify-content: space-around;margin-left: .0rem!important;">
+                <input class = "col-md-8" style = "
+                height: calc(1.5em + .75rem + 2px);
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: rgb(233, 24, 153);
+                background-color: #fff;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;" id="qty"
+                name="qty"/>
+                <div class = "col-md-4">
+                  <a
+                  type = "button"
+                  class="btn"
+                  id="minus"
+                  onclick="quantity('minus')"
+                  style="width: 40px;color: white;background-color: black;"
+                  > - </a>
+                  <a
+                    type = "button"
+                    class="btn"
+                    id="plus"
+                    onclick="quantity('plus')"
+                    style="color: white; width: 40px; margin-left: 10px;background-color: black;"
+                  >
+                  +
+                  </a>
+                </div>
+              </div> 
+          </div>
+          <div class="total col-md-6">
+            <label for="tot">Total (₹)</label>
+            <input style = "display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgb(233, 24, 153);
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;" id="tot"
+            name="tot"/>
+          </div>
+        </div>
+        <div style = "margin-top:20px;">
+          <button type="submit" class="btn btn-success btn-lg btn-block">
+            Place Order
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="col-md-1"></div>
 
 {% endblock %}
 <!-- <script src = "{% static 'store/js/checkout.js' %}" -->
