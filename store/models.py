@@ -44,6 +44,7 @@ class Book(models.Model):
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
+    book_name = models.CharField(max_length = 200,default = '')
     fname = models.CharField(max_length=200)
     lname = models.CharField(max_length=200)
     email = models.EmailField(max_length = 200)
@@ -51,3 +52,6 @@ class Order(models.Model):
     address = models.CharField(max_length=200)
     qty = models.IntegerField(default = 1)
     total = models.FloatField(default = 0)
+
+    def __str__(self):
+        return self.book_name

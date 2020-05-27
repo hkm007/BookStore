@@ -121,11 +121,30 @@ Checkout {% endblock %} {% block content %}
           />
         </div>
         <div class="form-row">
-          <div class="quant col-md-6">
+          <div class="total col-md-4">
+            <label for="tot">Book Name</label>
+            <input style = "display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgb(233, 24, 153);
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;" id="bookname"
+            value = "{{product.book_name}}"
+            name="bookName"/>
+          </div>
+          <div class="quant col-md-5">           
             <label for="quanty">Quantity: </label>           
               <div class = "row" style = "justify-content: space-around;margin-left: .0rem!important;">
                 <input class = "col-md-8" style = "
                 height: calc(1.5em + .75rem + 2px);
+                width:50%;
                 padding: .375rem .75rem;
                 font-size: 1rem;
                 font-weight: 400;
@@ -155,7 +174,7 @@ Checkout {% endblock %} {% block content %}
                 </div>
               </div> 
           </div>
-          <div class="total col-md-6">
+          <div class="total col-md-3">
             <label for="tot">Total (₹)</label>
             <input style = "display: block;
             width: 100%;

@@ -3,7 +3,6 @@ from django.http import HttpResponse,HttpResponseNotFound,JsonResponse
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Book
 from django.core.mail import EmailMessage,send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -11,6 +10,7 @@ import requests
 import json
 from .book_form import BookForm
 import datetime
+from .models import Book,Order
 
 def home(request):
     return render(request, 'store/home.html')
@@ -89,7 +89,7 @@ def handlecontact(request):
 def checkout(request, x_id):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            print(request.POST)
+            book_name = request.POST.get('bookName')
             fname = request.POST.get('fname')
             lname = request.POST.get('lname')
             emailUser = request.POST.get('emailUser')
@@ -99,7 +99,9 @@ def checkout(request, x_id):
             totalAmt = request.POST.get('tot')
             current_time = datetime.datetime.now()
 
-            data = {"id":x_id,"meta_data":{"date":current_time},"order":{"fname":fname,"lname":lname,"email":emailUser,"phone":phone,"address":address,"qty":qty,"total":totalAmt}}
+            newOrder = Order(book_name = book_name,fname = fname,lname = lname,email = emailUser,phone = phone,address = address,qty = qty,total = totalAmt)
+            newOrder.save()
+            data = {"id":x_id,"meta_data":{"date":current_time},"order":{"book_name":book_name,"fname":fname,"lname":lname,"email":emailUser,"phone":phone,"address":address,"qty":qty,"total":totalAmt}}
             return JsonResponse(data,json_dumps_params={'indent': 2})
         else:
             data = Book.objects.get(book_id = x_id)
