@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseNotFound,JsonResponse
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMessage,send_mail
+from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 import requests
@@ -11,6 +10,12 @@ import json
 from .book_form import BookForm
 import datetime
 from .models import Book,Order
+from django.views.decorators.csrf import csrf_exempt
+from PayTm import Checksum
+
+MERCHANT_ID = 'waIdeK60246441539675'
+MERCHANT_KEY = 'byJM9Ilhn0O2uH6_'
+
 
 def home(request):
     return render(request, 'store/home.html')
@@ -97,12 +102,23 @@ def checkout(request, x_id):
             address = request.POST.get('userAddr')
             qty = request.POST.get('qty')
             totalAmt = request.POST.get('tot')
-            current_time = datetime.datetime.now()
 
             newOrder = Order(book_name = book_name,fname = fname,lname = lname,email = emailUser,phone = phone,address = address,qty = qty,total = totalAmt)
             newOrder.save()
-            data = {"id":x_id,"meta_data":{"date":current_time},"order":{"book_name":book_name,"fname":fname,"lname":lname,"email":emailUser,"phone":phone,"address":address,"qty":qty,"total":totalAmt}}
-            return JsonResponse(data,json_dumps_params={'indent': 2})
+
+            param_dict = {
+                'MID': MERCHANT_ID,
+                'ORDER_ID':str(newOrder.order_id),
+                'TXN_AMOUNT':str(newOrder.total),
+                'CUST_ID':newOrder.email,
+                'INDUSTRY_TYPE_ID':'Retail',
+                'WEBSITE':'WEBSTAGING',
+                'CHANNEL_ID':'WEB',
+                'CALLBACK_URL':'http://localhost:8000/handlerequest/',
+            }
+
+            param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict,MERCHANT_KEY)
+            return render(request,'store/paytm.html',{"param_dict":param_dict})
         else:
             data = Book.objects.get(book_id = x_id)
             params = {"product":data}
@@ -110,6 +126,31 @@ def checkout(request, x_id):
     else:
         messages.warning(request, 'You must be logged in.')
         return redirect('products')
+
+
+######################  Payment Gateway #############################
+
+@csrf_exempt
+def handleRequest(request):
+    form = request.POST
+    response_dict = {}
+    for i in form.keys():
+        response_dict[i] = form[i]
+        if(i == 'CHECKSUMHASH'):
+            checksum = form[i]
+    
+    verify = Checksum.verify_checksum(response_dict,MERCHANT_KEY,checksum)
+
+    if verify:
+        if response_dict['RESPCODE'] == '01':
+            print("ORDER SUCCESSFULY SUBMITTED")
+        else:
+            print("ORDER FAILURE" + response_dict['RESPMSG'])
+    return render(request,'store/payment_status.html',{"response":response_dict})
+
+
+
+
 
 ###################### This is for admin only ########################
 

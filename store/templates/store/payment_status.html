@@ -1,0 +1,68 @@
+{% extends 'store/payment_base.html' %} 
+{% load static %} 
+{% block title%}TroyCart | Payment Details Page {% endblock %} 
+
+{% block content %}
+<div class = "container">
+    <h1 style = "text-align: center;margin-top: 40px;margin-bottom: 30px;">Payment Status regarding your ORDER</h1>
+    <div class="jumbotron">
+        {% if response.RESPCODE == '01' %}
+            <div>
+                <h3 style = "text-align: center;">Paytm Transaction Details</h3>
+                <table class="table my-3" style="text-align: center;">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Currency</th>
+                        <th scope="col">Gateway Name</th>
+                        <th scope="col">Bank Name</th>
+                        <th scope="col">Payment Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody  style = "background-color: white;">
+                        <tr>
+                            <td>{{response.CURRENCY}}</td>
+                            <td>{{response.GATEWAYNAME}}</td>
+                            <td>{{response.BANKNAME}}</td>
+                            <td>{{response.PAYMENTMODE}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style = "margin-top:50px;">
+                <h3 style = "text-align: center;">Customer Transaction Details</h3>
+                <table class="table my-3" style="text-align: center;">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">TXN ID</th>
+                        <th scope="col">ORDER ID</th>
+                        <th scope="col">TXN Date</th>
+                        <th scope="col">TXN AMT</th>
+                        <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody style = "background-color: white;">
+                        <tr>
+                        <td>{{response.TXNID}}</td>
+                        <td>{{response.ORDERID}}</td>
+                        <td>{{response.TXNDATE}}</td>
+                        <td>{{response.TXNAMOUNT}}</td>
+                        <td style = "color:rgb(30, 204, 30)">Success</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+        <h4 style = "text-align: center;">Payment Failure due to some Reasons</h4>
+        {% endif %}
+        <div style = "margin-top: 50px;">
+            <a><a style = "color:red">*</a> We will deliver your order within 3 days of TXN Date.<br><a style = "color:red">*</a> For further queries or issues, contact us <a style = "color:rgb(238, 9, 116)" href = "{% url 'contact' %}">Here</a>
+            </a>
+        </div>
+
+        <div style = "margin-top: 50px;text-align: center;">
+            <a class = "btn btn-success btn-lg" href = "{% url 'products' %}">Back To TroyCart</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

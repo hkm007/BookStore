@@ -1,5 +1,8 @@
-{% extends 'store/base.html' %} {% load static %} {% block title%}TroyCart |
-Checkout {% endblock %} {% block content %}
+{% extends 'store/base.html' %} 
+{% load static %} 
+{% block title%}TroyCart | Checkout {% endblock %} 
+
+{% block content %}
 <div class="col-md-1"></div>
 <div class="col-md-10" id="checkoutPage">
   <div class="container">
@@ -59,6 +62,7 @@ Checkout {% endblock %} {% block content %}
       <h2>Billing Details</h2>
       <hr />
       <form method="POST" action = "/checkout/{{product.book_id}}">
+        <input type = "hidden" name = "itemsJson" id = "itemsJson"/>
         {% csrf_token %}
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -94,7 +98,7 @@ Checkout {% endblock %} {% block content %}
               class="form-control"
               id="email1"
               name = "emailUser"
-              placeholder="First Name"
+              placeholder="Email"
             />
           </div>
           <div class="form-group col-md-6">
@@ -117,7 +121,7 @@ Checkout {% endblock %} {% block content %}
             class="form-control"
             id="inputAddress"
             name = "userAddr"
-            placeholder="Apartment, studio, or floor"
+            placeholder="Apartment, House No., or Street"
           />
         </div>
         <div class="form-row">
@@ -125,6 +129,7 @@ Checkout {% endblock %} {% block content %}
             <label for="tot">Book Name</label>
             <input style = "display: block;
             width: 100%;
+            pointer-events:none;
             height: calc(1.5em + .75rem + 2px);
             padding: .375rem .75rem;
             font-size: 1rem;
@@ -137,13 +142,14 @@ Checkout {% endblock %} {% block content %}
             border-radius: .25rem;
             transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;" id="bookname"
             value = "{{product.book_name}}"
-            name="bookName"/>
+            name="bookName" />
           </div>
           <div class="quant col-md-5">           
             <label for="quanty">Quantity: </label>           
               <div class = "row" style = "justify-content: space-around;margin-left: .0rem!important;">
                 <input class = "col-md-8" style = "
                 height: calc(1.5em + .75rem + 2px);
+                pointer-events:none;
                 width:50%;
                 padding: .375rem .75rem;
                 font-size: 1rem;
@@ -178,6 +184,7 @@ Checkout {% endblock %} {% block content %}
             <label for="tot">Total (₹)</label>
             <input style = "display: block;
             width: 100%;
+            pointer-events:none;
             height: calc(1.5em + .75rem + 2px);
             padding: .375rem .75rem;
             font-size: 1rem;

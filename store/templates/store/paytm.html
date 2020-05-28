@@ -1,0 +1,25 @@
+{% extends 'store/payment_base.html' %} 
+{% load static %} 
+{% block title%}TroyCart | Paytm Merchant Payments Page {% endblock %} 
+
+{% block content %}
+<div class = "container my-3">
+    <div style = "margin-top: 20px;">
+        <h1 style = "text-align: center;margin-top: 40px;">Redirecting you to the Merchant...</h1>
+        <h1 style = "text-align: center;margin-top: 20px;">Please Do not Refresh this page</h1>
+    </div>
+    
+    <div>
+        <form action="https://securegw-stage.paytm.in/order/process" method = "POST" name = "paytm">
+            {% for key,value in param_dict.items %}
+            <div style = "margin-top: 20px;">
+                <input type = "hidden" name = "{{key}}" value = "{{value}}"/>
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+</div>
+<script>
+    document.paytm.submit()
+</script>
+{% endblock %}
